@@ -21,7 +21,7 @@ tpp_mean <- mean(df$tpp)
 tpp_sd <- sd(df$tpp)
 
 df_adjusted <- data.frame(
-    tempo = lapply(df[, c("tempo")], function(tempo) tempo),
+    tempo = df[, c("tempo")],
     ddesemp = lapply(df[, c("ddesemp")], function(ddesemp) {
         (ddesemp - ddesemp_mean) / ddesemp_sd
     }),
@@ -33,6 +33,10 @@ df_adjusted <- data.frame(
 #  Then plot them and save the output
 plot <- ggplot(df_adjusted, aes(x = tempo)) +
     geom_line(aes(y = ddesemp, color = "ddesemp")) +
-    geom_line(aes(y = tpp, color = "tpp"))
+    geom_line(aes(y = tpp, color = "tpp")) +
+    xlab("Tempo") +
+    ylab("") +
+    scale_color_manual(values = c("red", "blue")) +
+    theme(legend.title = element_blank())
 
 ggsave(plot = plot, "output.png")
