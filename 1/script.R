@@ -22,12 +22,8 @@ tpp_sd <- sd(df$tpp)
 
 df_adjusted <- data.frame(
     tempo = df[, c("tempo")],
-    ddesemp = lapply(df[, c("ddesemp")], function(ddesemp) {
-        (ddesemp - ddesemp_mean) / ddesemp_sd
-    }),
-    tpp = lapply(df[, c("tpp")], function(tpp) {
-        (tpp - tpp_mean) / tpp_sd
-    })
+    ddesemp = lapply(df[, c("ddesemp")], function(ddesemp) (ddesemp - ddesemp_mean) / ddesemp_sd),
+    tpp = lapply(df[, c("tpp")], function(tpp) (tpp - tpp_mean) / tpp_sd)
 )
 
 #  Then plot them and save the output
