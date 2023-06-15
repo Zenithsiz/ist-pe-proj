@@ -38,6 +38,9 @@ occurrences <- mapply(function(x, is_step) {
 }, nums_cumsum, steps)
 occurrences <- occurrences[!is.na(occurrences)]
 
+occurrences_mean <- mean(occurrences)
+message("Occurrences mean: ", occurrences_mean)
 
-# TODO: Calculate expected value (theoretical) and
-#       compare it to the experimental value discovered here
+# TODO: Is the mean really `21`? That'd make sense, but
+#       might be too simple?
+message("Absolute deviation: ", abs(occurrences_mean - 21))
