@@ -1,10 +1,10 @@
 #!/bin/env Rscript
 
 # Set the seed for the RNG
-set.seed(1051)
+set.seed(1966)
 
 
-p <- 0.15
+p <- 0.4
 mass_fn <- function(x) {
     if (x >= 0) {
         (1 - p)^floor(x) * p
@@ -25,7 +25,7 @@ dist_fn <- function(x) {
 # TODO: This doesn't seem right...
 values <- vector()
 cur_idx <- 0
-while (length(values) < 1056) {
+while (length(values) < 1090) {
     u <- runif(1, min = 0, max = 1)
 
     min <- dist_fn(cur_idx - 1)
