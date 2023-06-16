@@ -12,6 +12,10 @@ https://docs.google.com/document/d/1kS8zsUVcjWqqpty2CcXHi8jTA-QsOA_2Q0VsUJ4OfXM
 
 https://docs.google.com/document/d/1DnvOxo3GlUY7sBHUCcyMEbMlQE2AYFBWAOSrNZyb4d4
 
+## 8
+
+https://docs.google.com/document/d/1x_AsfHc4JNxV8P6oOfUoZCu1yLQ9TQ82zRSoT7pDRrM
+
 # Util
 
 ## 6
