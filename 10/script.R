@@ -17,7 +17,7 @@ all_samples <- lapply(1:m, function(idx) {
 
 # Then get their t value
 samples_t <- sapply(all_samples, function(samples) {
-    (mean(samples) - expected_mean) / (true_var / sqrt(n))
+    (mean(samples) - expected_mean) / sqrt(true_var / n)
 })
 
 # And check if they're accepted
