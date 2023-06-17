@@ -27,6 +27,8 @@ df$AGE[df$AGE == "5564"] <- "55-64"
 
 #  Then plot them and save the output
 plot <- ggplot(df, aes(x = AGE, y = Value)) +
-    geom_col()
+    geom_col() +
+    xlab("Grupo etário") +
+    ylab("EMP1")
 
 ggsave(plot = plot, "output.png")
