@@ -5,42 +5,12 @@ set.seed(4728)
 
 # Generate all the numbers
 nums_len <- 1550
-nums <- rexp(nums_len, rate = 21)
+expected_mean <- 1.0 / 21.0
+nums <- rexp(nums_len, rate = expected_mean)
 
 # Then generate the cumulative sum of them
 # TODO: Is `max_time` even required?
 nums_cumsum <- cumsum(nums)
 max_time <- ceiling(nums_cumsum[nums_len])
 
-# Calculate a list of steps to discriminate
-# around unitary steps
-next_step <- 1
-steps <- sapply(nums_cumsum, function(x) {
-    if (x < next_step) {
-        FALSE
-    } else {
-        next_step <<- next_step + 1
-        TRUE
-    }
-})
-
-# Then count the occurrences within each unitary step
-cur_occurrences <- 0
-occurrences <- mapply(function(x, is_step) {
-    if (is_step) {
-        occurrences <- cur_occurrences
-        cur_occurrences <<- 1
-        occurrences
-    } else {
-        cur_occurrences <<- cur_occurrences + 1
-        NA
-    }
-}, nums_cumsum, steps)
-occurrences <- occurrences[!is.na(occurrences)]
-
-occurrences_mean <- mean(occurrences)
-message("Occurrences mean: ", occurrences_mean)
-
-# TODO: Is the mean really `21`? That'd make sense, but
-#       might be too simple?
-message("Absolute deviation: ", abs(occurrences_mean - 21))
+print(abs(nums_len / max_time - 1 / 21))
