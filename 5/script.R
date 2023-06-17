@@ -1,7 +1,7 @@
 #!/bin/env Rscript
 
 # Set the seed for the RNG
-set.seed(1966)
+# set.seed(1966)
 
 
 p <- 0.4
@@ -23,22 +23,32 @@ dist_fn <- function(x) {
 }
 
 # TODO: This doesn't seem right...
+values_length <- 1090
 values <- vector()
-cur_idx <- 0
-while (length(values) < 1090) {
+while (length(values) < values_length) {
     u <- runif(1, min = 0, max = 1)
 
-    min <- dist_fn(cur_idx - 1)
-    max <- dist_fn(cur_idx)
+    x <- 0
+    while (TRUE) {
+        min <- dist_fn(x - 1)
+        max <- dist_fn(x)
 
-    message("Trying ", u, " (", min, "..", max, ")")
-    if (u > min && u <= max) {
-        message("Successful ", u)
-        values <- append(values, TRUE)
-    } else {
-        values <- append(values, FALSE)
+        if (u > min && u <= max) {
+            values <- append(values, x)
+            break
+        }
+
+        x <<- x + 1
     }
-    cur_idx <- cur_idx + 1
 }
-print(cur_idx)
-print(values)
+
+true_mean <- (1 - p) / p
+values_mean <- mean(values)
+values_sd <- sd(values)
+
+
+values_count <- sum(sapply(values, function(value) {
+    value >= true_mean + values_sd && value >= values_mean
+}))
+print(values_count)
+print(values_count / values_length)
